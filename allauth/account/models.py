@@ -19,6 +19,8 @@ from allauth.account.managers import (
     EmailConfirmationManager,
 )
 
+from django.contrib.auth.models import AbstractUser
+from django.db import models
 
 class EmailAddress(models.Model):
     user = models.ForeignKey(
@@ -335,3 +337,6 @@ def get_emailconfirmation_model():
     else:
         model = EmailConfirmation
     return model
+
+
+

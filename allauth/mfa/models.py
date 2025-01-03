@@ -25,9 +25,20 @@ class Authenticator(models.Model):
         TOTP = "totp", _("TOTP Authenticator")
         WEBAUTHN = "webauthn", _("WebAuthn")
 
+    
+    # USER_TYPE_CHOICES = (
+    #     ('admin', 'Admin'),
+    #     ('merchant', 'Merchant'),
+    #     ('customer', 'Customer'),
+    #     )
+    
+
     objects = AuthenticatorManager()
 
     user = models.ForeignKey(settings.AUTH_USER_MODEL, on_delete=models.CASCADE)
+    # user_type = models.CharField(
+    #     max_length=20, choices=USER_TYPE_CHOICES, default='customer'
+    # )
     type = models.CharField(max_length=20, choices=Type.choices)
     data = models.JSONField()
     created_at = models.DateTimeField(default=timezone.now)

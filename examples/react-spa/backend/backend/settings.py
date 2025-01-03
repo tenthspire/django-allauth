@@ -14,7 +14,7 @@ SECRET_KEY = "dummy-secret-key"
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = ["localhost", "backend"]
+ALLOWED_HOSTS = ["127.0.0.1", "localhost"]
 
 
 # Application definition
@@ -33,6 +33,9 @@ INSTALLED_APPS = [
     "allauth.mfa",
     "allauth.headless",
     "allauth.usersessions",
+    'users',
+    'rest_framework',
+    'drf_yasg',
 ]
 
 MIDDLEWARE = [
@@ -122,7 +125,8 @@ DEFAULT_AUTO_FIELD = "django.db.models.BigAutoField"
 EMAIL_HOST = "mail"
 EMAIL_PORT = 1025
 
-AUTHENTICATION_BACKENDS = ("allauth.account.auth_backends.AuthenticationBackend",)
+AUTHENTICATION_BACKENDS = ("allauth.account.auth_backends.AuthenticationBackend",
+                           "django.contrib.auth.backends.ModelBackend",)
 
 ACCOUNT_EMAIL_VERIFICATION = "mandatory"
 ACCOUNT_LOGIN_METHODS = {"email"}
@@ -146,7 +150,11 @@ MFA_SUPPORTED_TYPES = ["totp", "recovery_codes", "webauthn"]
 MFA_PASSKEY_LOGIN_ENABLED = True
 MFA_PASSKEY_SIGNUP_ENABLED = True
 
-try:
-    from .local_settings import *  # noqa
-except ImportError:
-    pass
+
+AUTH_USER_MODEL = 'users.CustomUser'
+
+
+# try:
+#     from .local_settings import *  # noqa
+# except ImportError:
+#     pass

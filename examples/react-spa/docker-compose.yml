@@ -16,6 +16,7 @@ services:
       dockerfile: Dockerfile
     volumes:
       - ./backend/backend:/code/backend/
+      - ./backend/users:/code/users # add this .
       - ../../allauth:/code/allauth
     ports:
       - 8000:8000
