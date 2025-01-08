@@ -37,7 +37,6 @@ INSTALLED_APPS = [
     'users',
     'rest_framework',
     'drf_yasg',
-    'time_tracker',
     'django_filters',
     'rest_framework_simplejwt',
     'rest_framework.authtoken',
