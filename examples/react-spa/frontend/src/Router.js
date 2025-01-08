@@ -40,6 +40,8 @@ import Reauthenticate from './account/Reauthenticate'
 import Sessions from './usersessions/Sessions'
 import Root from './Root'
 import { useConfig } from './auth/hooks'
+import Project from './project/Project'
+
 
 function createRouter (config) {
   return createBrowserRouter([
@@ -185,6 +187,10 @@ function createRouter (config) {
         {
           path: '/account/sessions',
           element: <AuthenticatedRoute><Sessions /></AuthenticatedRoute>
+        },
+        {
+          path: '/project',
+          element: <AuthenticatedRoute><Project /></AuthenticatedRoute>
         }
       ]
     }

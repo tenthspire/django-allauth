@@ -1,0 +1,134 @@
+.project-container {
+  font-family: 'Arial', sans-serif;
+  background-color: #f4f7fa;
+  padding: 30px;
+  border-radius: 8px;
+  max-width: 900px;
+  margin: 30px auto;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+h1 {
+  color: #2c3e50;
+  text-align: center;
+  margin-bottom: 20px;
+}
+
+h3 {
+  color: #34495e;
+  margin-bottom: 15px;
+}
+
+.error-message {
+  color: #e74c3c;
+  background-color: #f9e5e5;
+  padding: 10px;
+  border-radius: 5px;
+  margin-bottom: 20px;
+  font-weight: bold;
+}
+
+.form-container {
+  background-color: #fff;
+  padding: 20px;
+  border-radius: 8px;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+  margin-bottom: 30px;
+}
+
+.form-container input {
+  width: 100%;
+  padding: 10px;
+  margin: 10px 0;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  font-size: 16px;
+}
+
+.form-container button {
+  background-color: #3498db;
+  color: white;
+  border: none;
+  padding: 12px 25px;
+  font-size: 16px;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+.form-container button:disabled {
+  background-color: #95a5a6;
+  cursor: not-allowed;
+}
+
+.form-container button:not(:disabled):hover {
+  background-color: #2980b9;
+}
+
+.project-list {
+  margin-top: 20px;
+}
+
+.project-card {
+  background-color: #fff;
+  padding: 20px;
+  margin-bottom: 20px;
+  border-radius: 8px;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+}
+
+.project-card h4 {
+  font-size: 20px;
+  color: #2c3e50;
+}
+
+.project-card p {
+  font-size: 16px;
+  color: #7f8c8d;
+}
+
+.project-card button {
+  background-color: #e67e22;
+  color: white;
+  border: none;
+  padding: 8px 20px;
+  font-size: 14px;
+  border-radius: 5px;
+  cursor: pointer;
+  margin-right: 10px;
+  transition: background-color 0.3s ease;
+}
+
+.project-card button:disabled {
+  background-color: #95a5a6;
+  cursor: not-allowed;
+}
+
+.project-card button:not(:disabled):hover {
+  background-color: #d35400;
+}
+
+.project-card button.delete-button {
+  background-color: #e74c3c;
+}
+
+.project-card button.delete-button:not(:disabled):hover {
+  background-color: #c0392b;
+}
+
+button.create-button {
+  width: 100%;
+  padding: 12px;
+}
+
+.project-list p {
+  text-align: center;
+  font-size: 18px;
+  color: #7f8c8d;
+}
+
+.project-container .loading {
+  text-align: center;
+  font-size: 18px;
+  color: #7f8c8d;
+}

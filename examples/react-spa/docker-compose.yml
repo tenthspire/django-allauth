@@ -17,6 +17,8 @@ services:
     volumes:
       - ./backend/backend:/code/backend/
       - ./backend/users:/code/users # add this .
+      - ./backend/time_tracker:/code/time_tracker
+      - ./backend/task:/code/task
       - ../../allauth:/code/allauth
     ports:
       - 8000:8000

@@ -1,4 +1,4 @@
-import { useState } from 'react'
+import { useState,useNavigate } from 'react'
 import FormErrors from '../components/FormErrors'
 import { login } from '../lib/allauth'
 import { Link } from 'react-router-dom'
@@ -12,12 +12,22 @@ export default function Login () {
   const [password, setPassword] = useState('')
   const [response, setResponse] = useState({ fetching: false, content: null })
   const config = useConfig()
+  const navigate = useNavigate();
   const hasProviders = config.data.socialaccount?.providers?.length > 0
 
   function submit () {
     setResponse({ ...response, fetching: true })
     login({ email, password }).then((content) => {
-      setResponse((r) => { return { ...r, content } })
+      setResponse((r) => { return { ...r, content } });
+      if (content.access_token) {
+        localStorage.setItem('authToken', content.access_token);
+        localStorage.setItem('refreshToken', content.refresh_token);
+
+        // Redirect user after login
+        navigate('/dashboard'); // Change '/dashboard' to your target route
+      } else {
+        window.alert('Login failed: Token not received.');
+      }
     }).catch((e) => {
       console.error(e)
       window.alert(e)

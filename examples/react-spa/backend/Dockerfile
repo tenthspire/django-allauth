@@ -9,3 +9,4 @@ EXPOSE 8000
 
 CMD ["sh", "-c", "python manage.py migrate && python manage.py runserver 0.0.0.0:8000"]
 RUN apt-get update && apt-get install -y sqlite3
+RUN pip install Pillow
