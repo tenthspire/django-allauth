@@ -18,6 +18,8 @@ services:
       - ./backend/backend:/code/backend/
       - ./backend/users:/code/users # add this .
       - ./backend/task:/code/task
+      - ./backend/resellerclub:/code/resellerclub
+      - ./backend/godaddy:/code/godaddy
       - ../../allauth:/code/allauth
     ports:
       - 8000:8000

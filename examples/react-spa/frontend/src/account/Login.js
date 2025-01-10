@@ -1,4 +1,5 @@
-import { useState,useNavigate } from 'react'
+import { useState } from 'react'
+import { useNavigate } from 'react-router-dom';
 import FormErrors from '../components/FormErrors'
 import { login } from '../lib/allauth'
 import { Link } from 'react-router-dom'

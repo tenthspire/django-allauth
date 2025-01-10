@@ -30,7 +30,9 @@ INSTALLED_APPS = [
     "allauth",
     "allauth.account",
     "allauth.socialaccount",
-    "allauth.socialaccount.providers.dummy",
+    "allauth.socialaccount.providers.google",# For Google login
+    'allauth.socialaccount.providers.apple', #For Apple login
+    'allauth.socialaccount.providers.facebook', # For Facebook login
     "allauth.mfa",
     "allauth.headless",
     "allauth.usersessions",
@@ -42,7 +44,77 @@ INSTALLED_APPS = [
     'rest_framework.authtoken',
     'corsheaders',
     'task',
+    'resellerclub',
+    'godaddy',
 ]
+
+# For Google Login
+SOCIALACCOUNT_PROVIDERS = {
+    'google': {
+        'SCOPE': [
+            'profile',
+            'email',
+        ],
+        'AUTH_PARAMS': {
+            'access_type': 'online',
+        },
+        'OAUTH_PKCE_ENABLED': True,
+    }
+}
+
+#For Facebook Login
+SOCIALACCOUNT_PROVIDERS = {
+    'facebook': {
+        'METHOD': 'oauth2',  # Set to 'js_sdk' to use the Facebook connect SDK
+        'SDK_URL': '//connect.facebook.net/{locale}/sdk.js',
+        'SCOPE': ['email', 'public_profile'],
+        'AUTH_PARAMS': {'auth_type': 'reauthenticate'},
+        'INIT_PARAMS': {'cookie': True},
+        'FIELDS': [
+            'id',
+            'first_name',
+            'last_name',
+            'middle_name',
+            'name',
+            'name_format',
+            'picture',
+            'short_name'
+        ],
+        'EXCHANGE_TOKEN': True,
+        'LOCALE_FUNC': 'path.to.callable',
+        'VERIFIED_EMAIL': False,
+        'VERSION': 'v13.0',
+        'GRAPH_API_URL': 'https://graph.facebook.com/v13.0',
+    }
+}
+
+# For Apple Login
+# SOCIALACCOUNT_PROVIDERS = {
+#     "apple": {
+#         "APPS": [{
+#             # Your service identifier.
+#             "client_id": "your.service.id",
+
+#             # The Key ID (visible in the "View Key Details" page).
+#             "secret": "KEYID",
+
+#              # Member ID/App ID Prefix -- you can find it below your name
+#              # at the top right corner of the page, or it’s your App ID
+#              # Prefix in your App ID.
+#             "key": "MEMAPPIDPREFIX",
+
+#             "settings": {
+#                 # The certificate you downloaded when generating the key.
+#                 "certificate_key": """-----BEGIN PRIVATE KEY-----
+# s3cr3ts3cr3ts3cr3ts3cr3ts3cr3ts3cr3ts3cr3ts3cr3ts3cr3ts3cr3ts3cr
+# 3ts3cr3ts3cr3ts3cr3ts3cr3ts3cr3ts3cr3ts3cr3ts3cr3ts3cr3ts3cr3ts3
+# c3ts3cr3t
+# -----END PRIVATE KEY-----
+# """
+#             }
+#         }]
+#     }
+# }
 
 MIDDLEWARE = [
     "django.middleware.security.SecurityMiddleware",
@@ -131,12 +203,25 @@ SIMPLE_JWT = {
     'BLACKLIST_AFTER_ROTATION': True,
 }
 
+# settings.py
+
+# RESELLERCLUB_API_USERNAME = '1269717'
+# RESELLERCLUB_API_KEY = 'gx3jGShhLevitnD4E6FMeTiLsc6JZMU1'
+
+GODADDY_API = {
+    "api_key": "3mM44WkB29Dg4G_YHGx1HsUizNpaYzJfNAMDJ",
+    "api_secret": "NzRAUdAEAzJZdLQvjQvCEK",
+    "test_mode": True,  # Change to False for live environment
+}
+
+GODADDY_BASE_URL = "https://api.ote-godaddy.com" if GODADDY_API["test_mode"] else "https://api.godaddy.com"
+
 # Internationalization
 # https://docs.djangoproject.com/en/4.2/topics/i18n/
 
 LANGUAGE_CODE = "en-us"
 
-TIME_ZONE = "UTC"
+TIME_ZONE = "UTC" 
 
 USE_I18N = True
 
