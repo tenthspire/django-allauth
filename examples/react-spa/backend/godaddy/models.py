@@ -10,3 +10,10 @@ class DomainPuchase(models.Model):
     def __str__(self):
         return self.domain_name
 
+class UpdatedDomainDetail(models.Model):
+    domain_name = models.CharField(max_length=255, default='default_domain_name')
+    contact_info = models.JSONField()
+    updated_at = models.DateTimeField(auto_now=True)
+
+    def __str__(self):
+        return self.domain_name

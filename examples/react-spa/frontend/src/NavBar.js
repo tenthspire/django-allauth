@@ -27,6 +27,7 @@ export default function NavBar () {
   const authNav = (
     <>   
       <NavBarItem to='/project' icon='📂' name='Projects' />
+      <NavBarItem to='/domainupdate' icon='🌐' name='Domain' />
       <NavBarItem to='/account/email' icon='📬' name='Change Email' />
       <NavBarItem to='/account/password/change' icon='🔒' name='Change Password' />
       {config.data.socialaccount

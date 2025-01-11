@@ -1,11 +1,13 @@
 import json
 from django.shortcuts import render
-
-# Create your views here.
 from django.http import JsonResponse
+from rest_framework.response import Response
 from .utils import godaddy_api_request
 from django.views.decorators.csrf import csrf_exempt
-from .models import DomainPuchase
+from .models import DomainPuchase,UpdatedDomainDetail
+from .serializers import DomainPurchaseSerializer
+from rest_framework import status
+from rest_framework.decorators import api_view
 
 def search_domain(request):
     domain_name = request.GET.get("domain", "example.com")
@@ -58,11 +60,6 @@ def purchase_domain(request):
     else:
         return JsonResponse({"error": "Invalid request method"}, status=405)
     
-# def check_domain_availability(domain_name):
-#     taken_domains = ["example.com", "test.com", "domain.com"]
-#     if domain_name in taken_domains:
-#         return False  # Domain is not available
-#     return True
 
 def check_domain_availability(domain_name):
     endpoint = "/v1/domains/available"
@@ -85,3 +82,44 @@ def check_domain_availability(domain_name):
             "domain_name": domain_name,
             "message": "Domain is not available for registration."
         })
+    
+@api_view(['GET'])
+def list_domain_purchases(request):
+    """
+    List all domain purchases.
+    """
+    domains = DomainPuchase.objects.all()
+    serializer = DomainPurchaseSerializer(domains, many=True)
+    return Response(serializer.data)
+
+@csrf_exempt
+def update_domain_contact(request):
+    if request.method == 'POST':
+        try:
+            data = json.loads(request.body)
+
+            domain_name = data.get("domain_name")
+            contact_info = data.get("contact_info")
+
+            if not domain_name or not contact_info:
+                return JsonResponse({"error": "Domain name or contact info is missing"}, status=400)
+            
+            domain = DomainPuchase.objects.filter(domain_name=domain_name).first()
+
+            if not domain:
+                return JsonResponse({"error": "Domain not found"}, status=404)
+            
+            domain.contact_info = contact_info
+            domain.save()
+
+            updated_domain = UpdatedDomainDetail.objects.create(
+                domain_name=domain_name,
+                contact_info=contact_info
+            )
+
+            return JsonResponse({"message": "Domain contact info updated successfully"}, status=200)
+
+        except json.JSONDecodeError:
+            return JsonResponse({"error": "Invalid JSON format"}, status=400)
+        except Exception as e:
+            return JsonResponse({"error": str(e)}, status=500)

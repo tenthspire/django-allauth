@@ -1,0 +1,106 @@
+.domain-purchase-container {
+  max-width: 800px;
+  margin: 20px auto;
+  padding: 20px;
+  background-color: #f9f9f9;
+  border-radius: 8px;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+.title {
+  text-align: center;
+  font-size: 2rem;
+  color: #333;
+  margin-bottom: 20px;
+}
+
+.error-message {
+  color: red;
+  font-size: 1rem;
+  margin-bottom: 15px;
+  text-align: center;
+}
+
+.domain-list {
+  list-style: none;
+  padding: 0;
+}
+
+.domain-item {
+  padding: 15px;
+  background-color: #ffffff;
+  margin-bottom: 15px;
+  border-radius: 8px;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+}
+
+.domain-name {
+  font-size: 1.5rem;
+  font-weight: bold;
+  color: #333;
+  margin-bottom: 10px;
+}
+
+.domain-contact-info {
+  font-size: 1rem;
+  color: #555;
+  margin-bottom: 10px;
+}
+
+.domain-input {
+  width: 100%;
+  padding: 10px;
+  font-size: 1rem;
+  margin-bottom: 10px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  background-color: #f7f7f7;
+}
+
+.contact-info-textarea {
+  width: 100%;
+  padding: 10px;
+  font-size: 1rem;
+  margin-bottom: 10px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  background-color: #f7f7f7;
+  min-height: 100px;
+}
+
+.update-button {
+  padding: 10px 20px;
+  font-size: 1rem;
+  background-color: #4CAF50;
+  color: white;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: background-color 0.3s;
+}
+
+.update-button:hover {
+  background-color: #45a049;
+}
+
+.update-button:focus {
+  outline: none;
+}
+
+@media (max-width: 768px) {
+  .domain-purchase-container {
+      padding: 15px;
+  }
+
+  .title {
+      font-size: 1.5rem;
+  }
+
+  .domain-name {
+      font-size: 1.25rem;
+  }
+
+  .domain-input, .contact-info-textarea, .update-button {
+      font-size: 0.9rem;
+  }
+}

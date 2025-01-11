@@ -41,6 +41,7 @@ import Sessions from './usersessions/Sessions'
 import Root from './Root'
 import { useConfig } from './auth/hooks'
 import Project from './project/Project'
+import DomainList from './Domain/DomainList'
 
 
 function createRouter (config) {
@@ -191,6 +192,10 @@ function createRouter (config) {
         {
           path: '/project',
           element: <AuthenticatedRoute><Project /></AuthenticatedRoute>
+        },
+        {
+          path: '/domainupdate',
+          element: <AuthenticatedRoute><DomainList /></AuthenticatedRoute>
         }
       ]
     }
